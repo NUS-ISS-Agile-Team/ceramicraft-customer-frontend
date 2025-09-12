@@ -89,6 +89,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElIcon } from 'element-plus'
+import { ElMessage } from 'element-plus'
 
 /** 路由实例 */
 const router = useRouter()
@@ -129,7 +130,7 @@ const checkPasswordInput = () => {
 const onLogin = () => {
   // 基本表单验证
   if (!loginForm.value.email || !loginForm.value.password) {
-    alert('Please enter email and password')
+  ElMessage.error('Please enter email and password')
     return
   }
 
@@ -150,13 +151,13 @@ const onLogin = () => {
 const onRegister = () => {
   // 基本字段验证
   if (!registerForm.value.nickname || !registerForm.value.email || !registerForm.value.password) {
-    alert('Please complete all required fields')
+  ElMessage.error('Please complete all required fields')
     return
   }
 
   // 密码一致性验证
   if (showConfirmPassword.value && registerForm.value.password !== registerForm.value.confirmPassword) {
-    alert('Passwords do not match')
+  ElMessage.error('Passwords do not match')
     return
   }
   

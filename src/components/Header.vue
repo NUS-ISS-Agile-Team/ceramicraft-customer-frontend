@@ -32,6 +32,7 @@
 
 import { User, Search, ShoppingCart } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
+import { ElMessageBox } from 'element-plus'
 
 /** 路由实例 */
 const router = useRouter()
@@ -41,12 +42,18 @@ const router = useRouter()
  * @description 简单的退出登录功能（临时实现）
  */
 const handleUserClick = () => {
-  if (confirm('确定要退出登录吗？')) {
+  ElMessageBox.confirm('确定要退出登录吗？', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(() => {
     // 清除认证状态
     localStorage.removeItem('userToken')
     // 跳转到登录页面
     router.push('/auth/login')
-  }
+  }).catch(() => {
+    // 用户取消，无需处理
+  })
 }
 </script>
 
