@@ -77,8 +77,6 @@ const router = createRouter({
 router.beforeEach((to, _from, next) => {
   // 简单的认证状态检查（可以后续扩展为真实的认证逻辑）
   const isAuthenticated = localStorage.getItem('userToken')
-  console.log('路由守卫检查 isAuthenticated:', isAuthenticated, '目标路由:', to.fullPath)
-
   // 如果访问需要认证的页面但未登录，重定向到登录页面
   if (to.meta?.requiresAuth && !isAuthenticated) {
     return next('/auth/login')
