@@ -13,10 +13,14 @@ const routes: Array<RouteRecordRaw> = [
   // 主应用路由 - 需要认证的页面
   {
     path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/',
     component: AppLayout,
     children: [
       {
-        path: '',
+        path: 'home',
         name: 'Home',
         component: () => import('../views/Home.vue'),
         meta: { requiresAuth: true }
@@ -72,20 +76,19 @@ const router = createRouter({
  */
 router.beforeEach((to, _from, next) => {
   // 简单的认证状态检查（可以后续扩展为真实的认证逻辑）
-  const isAuthenticated = localStorage.getItem('userToken') // 检查本地存储中的认证状态
-  
+  const isAuthenticated = localStorage.getItem('userToken')
+  console.log('路由守卫检查 isAuthenticated:', isAuthenticated, '目标路由:', to.fullPath)
+
   // 如果访问需要认证的页面但未登录，重定向到登录页面
   if (to.meta?.requiresAuth && !isAuthenticated) {
-    next('/auth/login')
-  } 
+    return next('/auth/login')
+  }
   // 如果已登录但访问登录页面，重定向到首页
-  else if (isAuthenticated && to.path === '/auth/login') {
-    next('/')
+  if (isAuthenticated && to.path === '/auth/login') {
+    return next('/')
   }
   // 其他情况正常跳转
-  else {
-    next()
-  }
+  return next()
 })
 
 export default router
