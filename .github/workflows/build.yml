@@ -9,7 +9,11 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
+<<<<<<< HEAD
               uses: actions/checkout@v4
+=======
+              uses: actions/checkout@v2
+>>>>>>> df70d6d (ADD: add dockerfile & build+sonar workflow)
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
