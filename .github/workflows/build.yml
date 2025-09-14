@@ -10,10 +10,14 @@ jobs:
         steps:
             - name: Checkout code
 <<<<<<< HEAD
+<<<<<<< HEAD
               uses: actions/checkout@v4
 =======
               uses: actions/checkout@v2
 >>>>>>> df70d6d (ADD: add dockerfile & build+sonar workflow)
+=======
+              uses: actions/checkout@v4
+>>>>>>> d4072aa (feature: add deploy workflow)
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
