@@ -88,7 +88,7 @@
 
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { ElIcon } from 'element-plus'
+//import { ElIcon } from 'element-plus'
 import { ElMessage } from 'element-plus'
 
 /** 路由实例 */
@@ -196,7 +196,6 @@ const onRegister = () => {
   object-fit: contain;
   margin: 0;
   display: block;
-  vertical-align: bottom;
 }
 
 .login-right {

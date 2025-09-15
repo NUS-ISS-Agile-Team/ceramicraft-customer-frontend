@@ -25,7 +25,7 @@ npm run type-check
 
 ## 项目结构
 
-```
+```markdown
 src/
 ├── components/     # 公共组件
 ├── views/         # 页面
@@ -41,6 +41,7 @@ src/
 ## 代码规范
 
 ### 命名规范
+
 - 组件文件：`PascalCase.vue`
 - TypeScript 文件：`camelCase.ts`
 - 类型定义：`PascalCase`
@@ -48,6 +49,7 @@ src/
 - CSS类名：`kebab-case`
 
 ### Vue 组件结构
+
 ```vue
 <template>
   <!-- 模板 -->
@@ -63,6 +65,7 @@ src/
 ```
 
 ### TypeScript 规范
+
 ```typescript
 // 接口定义
 interface User {
@@ -116,7 +119,7 @@ interface Props {
 
 ## Git 提交规范
 
-```
+```markdown
 type: 简短描述
 
 feat: 新功能
@@ -127,7 +130,8 @@ type: 类型定义更新
 ```
 
 示例：
-```
+
+```markdown
 feat: 添加用户登录功能
 fix: 修复首页商品展示问题
 type: 添加产品相关类型定义
