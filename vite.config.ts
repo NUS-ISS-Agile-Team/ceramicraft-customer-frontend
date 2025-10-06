@@ -25,6 +25,6 @@ export default defineConfig({
   preview: {
     port: 4173, // Port for `vite preview`
     host: '0.0.0.0', // Listen on all network interfaces
-    allowedHosts: ['all'], // Allow all hosts for preview mode
+    allowedHosts: ['all', 'localhost','ceramicraft-customer-frontend'], // Allow all hosts for preview mode
   },
 })
