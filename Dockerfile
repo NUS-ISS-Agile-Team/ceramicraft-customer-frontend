@@ -31,5 +31,20 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # 暴露 8080 端口
 EXPOSE 8080
 
-# 启动 nginx
+# 创建非 root 用户和组，用于运行 nginx
+# 1) 创建用户和组 'nginxuser'，不使用登录shell，并把主目录设置到 /var/cache/nginx
+# 2) 确保 nginx 需要写入的目录归属该用户
+RUN addgroup -S nginxgroup \
+	&& adduser -S nginxuser -G nginxgroup -h /var/cache/nginx
+
+# 为 nginx 的静态文件、缓存、日志和运行时目录设置权限
+RUN mkdir -p /var/cache/nginx /var/run /var/log/nginx /run \
+	# 确保 pid 文件存在并由非 root 用户拥有
+	&& touch /run/nginx.pid \
+	&& chown -R nginxuser:nginxgroup /usr/share/nginx/html /var/cache/nginx /var/run /var/log/nginx /run /run/nginx.pid
+
+# 切换到非 root 用户执行 nginx
+USER nginxuser
+
+# 启动 nginx（以非 root 用户运行）
 CMD ["nginx", "-g", "daemon off;"]
