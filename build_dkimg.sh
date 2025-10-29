@@ -14,7 +14,7 @@ echo ""
 # 构建镜像
 docker build -t $PROJECT_NAME:$TAG -t $PROJECT_NAME:latest .
 
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
     echo ""
     echo "✅ 构建成功!"
     echo "🐳 镜像: $PROJECT_NAME:$TAG"

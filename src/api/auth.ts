@@ -16,7 +16,7 @@ export const login = async (credentials: LoginRequest): Promise<LoginResponse> =
     localStorage.setItem('userToken', 'logged-in-' + Date.now());
     
     // 触发登录状态变化事件
-    window.dispatchEvent(new CustomEvent('loginStatusChanged', {
+    globalThis.dispatchEvent(new CustomEvent('loginStatusChanged', {
       detail: { user: { email: credentials.email } }
     }));
     
@@ -59,7 +59,7 @@ export const logout = async (): Promise<void> => {
     localStorage.removeItem('userToken');
     
     // 触发登出状态变化事件
-    window.dispatchEvent(new CustomEvent('loginStatusChanged', {
+    globalThis.dispatchEvent(new CustomEvent('loginStatusChanged', {
       detail: { user: null }
     }));
     
@@ -68,7 +68,7 @@ export const logout = async (): Promise<void> => {
     console.error('Logout API failed:', error);
     // 即使登出接口失败，也要清除本地 token（前端强制登出）
     localStorage.removeItem('userToken');
-    window.dispatchEvent(new CustomEvent('loginStatusChanged', {
+    globalThis.dispatchEvent(new CustomEvent('loginStatusChanged', {
       detail: { user: null }
     }));
     // 重新抛出错误，让调用者知道API调用失败了

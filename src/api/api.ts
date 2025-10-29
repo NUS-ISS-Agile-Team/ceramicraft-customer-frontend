@@ -70,7 +70,7 @@ const createApiInstance = (): AxiosInstance => {
           case 401:
             // 未授权，清除 token 并跳转到登录页
             localStorage.removeItem('userToken');
-            window.location.href = '/login';
+            globalThis.location.href = '/login';
             break;
           case 403:
             console.error('访问被拒绝');
